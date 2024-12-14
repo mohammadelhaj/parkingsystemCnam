@@ -18,11 +18,20 @@ public class FareCalculatorService {
         long durationm = outMinutes - inMinutes;
         double rate = 1.0;
         int duration = (int) durationm / 60; 
-        if (durationm < 15) {
+        if (durationm < 30) {
             rate = 0.0;
         } else if (durationm < 60) {
-            rate = 0.75;
+            rate = 0.5;
             duration = 1;
+        } else {
+            durationm -= 30;
+            if (durationm < 60) {
+                rate = 0.5;
+                duration = 1;
+            } else {
+                duration  = (int) durationm / 60 ;
+            }
+
         }
        
         switch (ticket.getParkingSpot().getParkingType()){
